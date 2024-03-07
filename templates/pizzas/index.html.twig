@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pizzas Catalog{% endblock %}
+
+        {% block content %}
+            <section id="main">  
+                <div class="grid-title">Pizzas Catalogs</div>
+                <div class="th_container">
+                    <div class="ingredient-header">Name</div>
+                    <div class="ingredient-header">Description</div>
+                    <div class="ingredient-header">Action</div>
+                </div>
+                {% for pizza in pizzas %}
+                    <div class="grid-row">
+                        <div class="grid-item">{{ pizza.pizzaName }}</div>
+                        <div class="grid-item">{{ pizza.pizzaDescription }}</div>
+                        <div class="grid-item"><a href="#" class="show_pizza" data-name="{{pizza.pizzaName}}" data-id="{{pizza.id}}">show</a></div>
+                    </div>
+                {% else %}
+                    <div class="grid-row">
+                        <div class="grid-item" colspan="3">No hay registros</div>
+                    </div>
+                {% endfor %}
+            </section>
+
+           <section id="detail">  
+                <div class="grid-title">Pizza: </div>
+                <div class="th_container">
+                    <div class="ingredient-header">Ingredient</div>
+                </div>
+                <div class="grid_ingredients grid-row">
+                    <div class="grid-item"></div>
+                </div>
+                <div class="grid_total">
+                    <label class="label_total">Total $:</label>
+                    <span class="amount"></span>
+                </div>   
+            </section>
+            <section id="changes">  
+                <div class="grid-title">Your Changes</div>
+                <div class="th_container">
+                    <div class="ingredient-header">Ingredient</div>
+                    <div class="ingredient-header">Price</div>
+                    <div class="ingredient-header">Action</div>
+                </div>
+                {% for ingredient in ingredients %}
+                    <div class="grid-row">
+                        <div class="grid-item">{{ ingredient.ingredientName }}</div>
+                        <div class="grid-item">{{ ingredient.price }}</div>
+                        <div class="grid-item"><a href="#" class="add_ingredient" data-name="{{ingredient.ingredientName}}" data-price="{{ingredient.price}}">Add</a></div>
+                    </div>
+                {% else %}
+                    <div class="grid-row">
+                        <div class="grid-item" colspan="3">No hay registros</div>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endblock %}
